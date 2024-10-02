@@ -23,6 +23,16 @@ const UserController = {
 
         const { name, email, password_hash, admin } = request.body
 
+        const userExist = await User.findOne({
+            where: {
+                email,
+            },
+        })
+        
+        if(userExist) {
+            return response.status(400).json({error: 'User already exists'})
+        }
+
         const user = await User.create({
             id: v4(),
             name,
