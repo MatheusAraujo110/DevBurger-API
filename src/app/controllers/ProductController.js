@@ -1,4 +1,5 @@
 import * as Yup from 'yup'
+import Product from '../models/Product'
 
 const ProductController = {
     async store(request, response) {
@@ -14,8 +15,18 @@ const ProductController = {
             return response.status(400).json({ error: err.errors })
         }
 
-        return response.status(201).json({ message: 'ok' })
+        const { filename: path } = request.file
+        const { name, price, category } = request.body
+
+        const product = await Product.create({
+            name,
+            price,
+            category,
+            path,
+        })
+
+        return response.status(201).json(product)
     }
 }
 
-export default ProductController
+export default ProductController 
