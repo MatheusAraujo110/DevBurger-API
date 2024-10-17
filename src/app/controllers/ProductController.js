@@ -1,4 +1,4 @@
-import * as Yup from 'yup'
+import * as Yup from "yup"
 import Product from '../models/Product'
 
 const ProductController = {
@@ -26,7 +26,13 @@ const ProductController = {
         })
 
         return response.status(201).json(product)
+    },
+
+    async index(request, response) {
+        const products = await Product.findAll()
+
+        return response.json(products)
     }
 }
 
-export default ProductController 
+export default ProductController

@@ -1,5 +1,7 @@
 import * as Yup from "yup"
 import User from "../models/User"
+import jwt from "jsonwebtoken"
+import authConfig from "../../config/auth"
 
 const SessionController = {
     async store(request, response) {
@@ -42,6 +44,9 @@ const SessionController = {
             name: user.name,
             email,
             admin: user.admin,
+            token: jwt.sign({ id: user.id }, authConfig.secret, {
+                expiresIn: authConfig.expiresIn,
+            }),
         })
     }
 }
