@@ -7,6 +7,7 @@ const UserController = {
     async store(request, response) {
 
         const schema = Yup.object({
+            name: Yup.string().required(),
             email: Yup.string().required(),
             password: Yup.string().min(6).required(),
             admin: Yup.boolean(),
