@@ -1,5 +1,7 @@
 import express from 'express'
 import { resolve } from 'node:path'
+import cors from 'cors'
+
 import routes from './routes'
 
 import "./database"
@@ -8,6 +10,7 @@ class App {
     constructor() {
         this.app = express()
 
+        this.app.use(cors())
         this.meddlewares()
         this.routes()
     }
@@ -19,7 +22,6 @@ class App {
         this.app.use(express.json())
         this.app.use('/category-file', express.static(resolve(__dirname, '..', 'uploads')))
     }
-    
 
     routes() {
         this.app.use(routes)
