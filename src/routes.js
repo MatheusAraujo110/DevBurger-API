@@ -13,10 +13,10 @@ import OrderController from "./app/controllers/OrderController"
 const routes = new Router()
 const upload = multer(multerConfig)
 
-routes.post('/users', UserController.store)
-routes.post('/session', SessionController.store)
+routes.post('/users', UserController.store)  // Cadastro.
+routes.post('/session', SessionController.store) // Login.
 
-routes.use(authMiddleware)
+routes.use(authMiddleware) // Será chamado por todas as rotas ABAIXO.
 routes.post('/products', upload.single('file'), ProductController.store)
 routes.get('/products', authMiddleware, ProductController.index)
 routes.put('/products/:id', upload.single('file'), ProductController.update)
