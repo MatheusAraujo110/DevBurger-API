@@ -27,9 +27,9 @@ routes.post('/categories', upload.single('file'), CategoryController.store)
 routes.get('/categories', authMiddleware, CategoryController.index)
 routes.put('/categories/:id', upload.single('file'), CategoryController.update)
 
-routes.post('/orders', OrderController.store)
-routes.get('/orders', OrderController.index)
-routes.put('/orders/:id', OrderController.update)
+routes.post('/orders', OrderController.store)  // Cria um pedido.
+routes.get('/orders', OrderController.index)  // Busca todos os pedidos.
+routes.put('/orders/:id', OrderController.update)  // Editar um pedido.
 
 routes.post('/create-payment-intent', CreatePaymentIntentController.store)
 
